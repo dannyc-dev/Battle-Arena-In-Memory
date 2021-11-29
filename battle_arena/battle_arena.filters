@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mem_test.cpp">
+    <ClCompile Include="battle_arena.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="entity\entity.cpp">
