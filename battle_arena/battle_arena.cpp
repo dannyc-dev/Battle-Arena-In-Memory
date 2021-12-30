@@ -60,7 +60,15 @@ int main() {
             case 2: {
                 // Heal 
                 clear_screen();
-                std::cout << "Healing...\n" << std::endl;
+                game.battle_heal(player, enemy);
+                if (game.m_progress) {
+                    player.show_player_health(player_name);
+                    enemy.show_player_health(enemy_name);
+                }
+                else {
+                    // Game over 
+                    system("pause");
+                }
                 break;
             }
             case 3: {

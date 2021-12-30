@@ -22,6 +22,7 @@ public:
 	void debug_data();
 	void reset_game();
 	void battle(Player& player1, Player& player2);
+	void battle_heal(Player& player1, Player& player2);
 	Player* get_winner(Player& player1, Player& player2);
 	bool check_game_over(Player& player1, Player& player2);
 protected:

@@ -20,6 +20,8 @@ public:
 	void take_damage(int dmg);
 	void show_player_health(std::string player_name);
 	int attack(int damage = -1);
+	int heal();
+	void heal_player(int health);
 };
 
 #endif

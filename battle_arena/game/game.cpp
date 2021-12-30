@@ -18,8 +18,8 @@ void Game::show_menu() {
     */
     std::cout << "Game Menu:" << std::endl;
     std::cout << "0 - Show Game Details" << std::endl;
-    std::cout << "1 - Attack!!!" << std::endl;
-    std::cout << "2 - Heal" << std::endl;
+    std::cout << "1 - Attack!!" << std::endl;
+    std::cout << "2 - Heal!" << std::endl;
     std::cout << "3 - Reset Game" << std::endl;
     std::cout << "4 - Debug Data (Windows Only)" << std::endl;
     std::cout << "5 - Surrender" << std::endl;
@@ -85,6 +85,19 @@ void Game::battle(Player& player1, Player& player2) {
         show_winner(player1, player2);
         return;
     }
+}
+
+void Game::battle_heal(Player& player1, Player& player2) {
+    // Attack banner
+    std::string battle_banner = "Healing Tent!";
+    banner(battle_banner);
+    int player1_heal = player1.heal();
+    std::cout << "Player regained " << player1_heal << " health from potion" << std::endl;
+    player1.heal_player(player1_heal);
+
+    int player2_heal = player2.heal();
+    std::cout << "Enemy regained " << player2_heal << " health from potion" << std::endl;
+    player2.heal_player(player2_heal);
 }
 
 Player* Game::get_winner(Player& player1, Player& player2) {
