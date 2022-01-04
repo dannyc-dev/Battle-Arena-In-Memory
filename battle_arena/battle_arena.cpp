@@ -13,6 +13,7 @@ static Game game(player, enemy);
 int main() {
     // Create and size console window
     HWND console = GetConsoleWindow();
+    SetConsoleTitle(L"Battle Arena");
 
     RECT ConsoleRect;
     const int width = 1000;
