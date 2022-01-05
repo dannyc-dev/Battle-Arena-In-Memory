@@ -21,7 +21,7 @@ int main() {
 
     GetWindowRect(console, &ConsoleRect);
 
-    MoveWindow(console, ConsoleRect.right / 2 - width / 3, ConsoleRect.bottom / 2 - height / 3, width, height, TRUE);
+    MoveWindow(console, ConsoleRect.right / 2 - width / 3, ConsoleRect.bottom / 2 - height / 2.5, width, height, TRUE);
     clear_screen();
 
     const std::string w_banner = "Battle Arena In Memory!";
