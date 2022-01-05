@@ -48,3 +48,42 @@ void player_banner(std::string player_banner_message, int total_hp, int health, 
     std::cout << banner << std::endl;
 }
 
+void game_log_banner(std::vector<int> game_events) {
+    std::string banner_case = "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
+    std::string pad_row = "| \t\t\t\t\t|\n";
+    std::string banner;
+
+    if (game_events.size() == 1) {
+        std::string banner_dmg = std::to_string(game_events[0]);
+        std::string banner_message_f = "|\tPlayer dealt " + banner_dmg + " to enemy \t|\n";
+        banner = banner_case + pad_row + banner_message_f + pad_row + banner_case;
+    }
+    else if (game_events.size() == 2) {
+        std::string player_dmg = std::to_string(game_events[0]);
+        std::string enemy_dmg = std::to_string(game_events[1]);
+        std::string player_message = "|\tPlayer dealt " + player_dmg + " to enemy \t|\n";
+        std::string enemy_message = "|\tEnemy dealt " + enemy_dmg + " to player \t|\n";
+
+        banner = banner_case + pad_row + player_message + enemy_message + pad_row + banner_case;
+    }
+    
+    std::cout << banner << std::endl;
+}
+
+void game_heal_banner(std::vector<int> game_events) {
+    std::string banner_case = "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n";
+    std::string pad_row = "| \t\t\t\t\t\t|\n";
+    std::string banner;
+
+    if (game_events.size() == 2) {
+        std::string player_heal = std::to_string(game_events[0]);
+        std::string enemy_heal = std::to_string(game_events[1]);
+        std::string player_message = "|\tPlayer regained " + player_heal + " health from potion \t|\n";
+        std::string enemy_message = "|\tEnemy regained " + enemy_heal + " health from potion \t|\n";
+
+        banner = banner_case + pad_row + player_message + enemy_message + pad_row + banner_case;
+    }
+
+    std::cout << banner << std::endl;
+}
+

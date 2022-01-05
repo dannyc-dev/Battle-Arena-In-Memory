@@ -16,8 +16,8 @@ int main() {
     SetConsoleTitle(L"Battle Arena");
 
     RECT ConsoleRect;
-    const int width = 1000;
-    const int height = 600;
+    const int width = 1100;
+    const int height = 700;
 
     GetWindowRect(console, &ConsoleRect);
 
