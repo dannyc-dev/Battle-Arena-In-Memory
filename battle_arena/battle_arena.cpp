@@ -22,6 +22,7 @@ int main() {
     GetWindowRect(console, &ConsoleRect);
 
     MoveWindow(console, ConsoleRect.right / 2 - width / 3, ConsoleRect.bottom / 2 - height / 3, width, height, TRUE);
+    clear_screen();
 
     const std::string w_banner = "Battle Arena In Memory!";
     const std::string player_name = "My Player";
@@ -49,8 +50,8 @@ int main() {
                 clear_screen();
                 game.battle(player, enemy);
                 if (game.m_progress) {
-                    enemy.show_player_health(enemy_name);
                     player.show_player_health(player_name);
+                    enemy.show_player_health(enemy_name);
                 }
                 else {
                     // Game over 
