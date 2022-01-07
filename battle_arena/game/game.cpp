@@ -54,26 +54,28 @@ void Game::debug_data() {
 }
 
 void Game::reset_game() {
-    for (Player& player : playerList) {
+    for (Player* player : playerList) {
         reset_player_stats(player);
     }
 }
 
-void Game::reset_player_stats(Player& player) {
-    player.set_health(100);
-    player.set_armor(50);
-    player.set_total_hp();
+void Game::reset_player_stats(Player* player) {
+    player->set_health(100);
+    player->set_armor(50);
+    player->set_total_hp();
 }
 
-void Game::battle(Player& player1, Player& player2) {
+void Game::battle() {
     // Attack banner
     std::string battle_banner = "Battle Arena!";
     banner(battle_banner);
 
     std::vector<int> game_log;
+    Player* player1 = playerList[0];
+    Player* player2 = playerList[1];
 
-    int player_damage = player1.attack();
-    player2.take_damage(player_damage);
+    int player_damage = player1->attack();
+    player2->take_damage(player_damage);
     game_log.push_back(player_damage);
     if (check_game_over(player1, player2)) {
         game_log_banner(game_log);
@@ -83,8 +85,8 @@ void Game::battle(Player& player1, Player& player2) {
     }
     
 
-    int enemy_damage = player2.attack();
-    player1.take_damage(enemy_damage);
+    int enemy_damage = player2->attack();
+    player1->take_damage(enemy_damage);
     game_log.push_back(enemy_damage);
     if (check_game_over(player1, player2)) {
         game_log_banner(game_log);
@@ -97,32 +99,34 @@ void Game::battle(Player& player1, Player& player2) {
     game_log_banner(game_log);
 }
 
-void Game::battle_heal(Player& player1, Player& player2) {
+void Game::battle_heal() {
     // Attack banner
     std::string battle_banner = "Healing Tent!";
     banner(battle_banner);
 
     std::vector<int> game_log;
+    Player* player1 = playerList[0];
+    Player* player2 = playerList[1];
 
-    int player1_heal = player1.heal();
+    int player1_heal = player1->heal();
     game_log.push_back(player1_heal);
-    player1.heal_player(player1_heal);
+    player1->heal_player(player1_heal);
 
-    int player2_heal = player2.heal();
+    int player2_heal = player2->heal();
     game_log.push_back(player2_heal);
-    player2.heal_player(player2_heal);
+    player2->heal_player(player2_heal);
 
     game_heal_banner(game_log);
 }
 
-Player* Game::get_winner(Player& player1, Player& player2) {
-    if (player1.get_total_hp() == 0) {
+Player* Game::get_winner(Player* player1, Player* player2) {
+    if (player1->get_total_hp() == 0) {
         m_progress = false;
-        return &player2;
+        return player2;
     }
-    else if (player2.get_total_hp() == 0) {
+    else if (player2->get_total_hp() == 0) {
         m_progress = false;
-        return &player1;
+        return player1;
     }
     return NULL;
 }
@@ -142,14 +146,14 @@ std::string Game::winner_title(Player* winner) {
     }
 }
 
-bool Game::check_game_over(Player& player1, Player& player2) {
-    if ((player1.get_total_hp() == 0) || (player2.get_total_hp() == 0)) {
+bool Game::check_game_over(Player* player1, Player* player2) {
+    if ((player1->get_total_hp() == 0) || (player2->get_total_hp() == 0)) {
         return true;
     }
     return false;
 }
 
-void Game::show_winner(Player& player1, Player& player2) {
+void Game::show_winner(Player* player1, Player* player2) {
     Player* winning_player = get_winner(player1, player2);
 
     int winning_player_total_hp = winning_player->get_total_hp();

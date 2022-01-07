@@ -8,7 +8,7 @@
 // Globals
 static Player player(0);
 static Player enemy(1);
-static Game game(player, enemy);
+Game game(&player, &enemy);
 
 int main() {
     // Create and size console window
@@ -48,7 +48,7 @@ int main() {
             case 1: {
                 // Attack
                 clear_screen();
-                game.battle(player, enemy);
+                game.battle();
                 if (game.m_progress) {
                     player.show_player_health(player_name);
                     enemy.show_player_health(enemy_name);
@@ -62,7 +62,7 @@ int main() {
             case 2: {
                 // Heal 
                 clear_screen();
-                game.battle_heal(player, enemy);
+                game.battle_heal();
                 if (game.m_progress) {
                     player.show_player_health(player_name);
                     enemy.show_player_health(enemy_name);

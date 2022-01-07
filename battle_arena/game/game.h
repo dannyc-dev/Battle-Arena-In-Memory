@@ -12,25 +12,25 @@
 
 class Game {
 public:
-	Game(Player& player1, Player& player2) {
+	Game(Player* player1, Player* player2) {
 		playerList = { player1, player2 };
 	}
-	std::vector<std::reference_wrapper<Player>> playerList;
+	std::vector<Player*> playerList;
 	bool m_progress = true;
 	bool m_menu = true;
 	int get_user_input();
 	void debug_data();
 	void reset_game();
-	void battle(Player& player1, Player& player2);
-	void battle_heal(Player& player1, Player& player2);
-	Player* get_winner(Player& player1, Player& player2);
-	bool check_game_over(Player& player1, Player& player2);
+	void battle();
+	void battle_heal();
+	Player* get_winner(Player* player1, Player* player2);
+	bool check_game_over(Player* player1, Player* player2);
 protected:
 	void show_menu();
 	int get_user_option();
-	void reset_player_stats(Player& player);
+	void reset_player_stats(Player* player);
 	std::string winner_title(Player* winner);
-	void show_winner(Player& player1, Player& player2);
+	void show_winner(Player* player1, Player* player2);
 	void winner_banner(std::string player_winner_message, Player* winning_player);
 };
 
