@@ -18,6 +18,7 @@ void Player::take_damage(int dmg) {
     }
 }
 
+// This needs to be rewritten lol
 void Player::heal_player(int health) {
     int max_armor = 50;
     int max_health = 100;
